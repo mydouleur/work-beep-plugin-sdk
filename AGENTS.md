@@ -45,9 +45,10 @@ pnpm install && pnpm build   # tsc → dist/
   （构建期把 import 改写为 `globalThis.__beepShim*` 解构，保证与 Host 同一份实例，
   `CTX_KEY` 必须是同一个 Symbol）。不要改成 import map 方案——rolldown-vite 会把 shim
   入口摇树成空壳（踩过的坑，勿走回头路）。
-- 本地联调要求三仓并列：`work-beep` / `work-beep-plugin-sdk` / `work-beep-plugin-blender`，
-  经 `file:` 依赖互相引用；各包内 `packages: []` 的 pnpm-workspace.yaml 是为了挡住外层
-  workspace 抢安装目标，不要删。
+- 依赖关系：Host（work-beep）经 `file:../work-beep-plugin-sdk` 引用本仓（契约实现方，
+  改契约需本地联动，两仓需并列）；插件仓库走 GitHub 依赖（`github:mydouleur/work-beep-plugin-sdk#main`）
+  可单仓独立开发。**`prepare` 脚本（tsc）是 GitHub 依赖安装时构建 dist/ 的关键，不要删。**
+- 各包内 `packages: []` 的 pnpm-workspace.yaml 是为了挡住外层 workspace 抢安装目标，不要删。
 
 ## 安全
 

@@ -1,0 +1,15 @@
+{
+  "name": "@beep/plugin-kit",
+  "version": "0.1.0",
+  "description": "blenderBeeper 插件构建预设：单文件 ESM 产物 + external vue/@beep/sdk + 复制 plugin.json/assets",
+  "type": "module",
+  "main": "index.mjs",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "files": ["index.mjs"],
+  "dependencies": {
+    "@vitejs/plugin-vue": "^6.0.8",
+    "vite": "^8.1.4"
+  }
+}

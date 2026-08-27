@@ -1,0 +1,22 @@
+{
+  "name": "@beep/sdk",
+  "version": "0.1.0",
+  "description": "blenderBeeper 插件 SDK：definePlugin 契约与 PluginContext 类型（薄契约，实现在 Host）",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc"
+  },
+  "devDependencies": {
+    "typescript": "~5.6.2",
+    "vue": "^3.5.13"
+  }
+}

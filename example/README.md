@@ -2,8 +2,13 @@
 
 ## 调试回路
 
-1. `host-app/` 是打包好的主程序（beep-host.exe + plugins/），**不进版本库**，
-   由 host 仓库 `pnpm tauri build --no-bundle && pnpm dist:host` 产出后拷入。
+1. 下载打包好的主程序（免构主项目）：
+
+   ```bash
+   node scripts/fetch-host.mjs            # 默认拉 v0.1.0-dev，可传其他 tag
+   ```
+
+   产物为 `host-app/`（beep-host.exe + plugins/），来自 work-beep 的 GitHub Release，**不进版本库**。
 2. 你的插件用 `@beep/plugin-kit` 构建（`vite build`），产物为
    `dist/plugin.js + plugin.json + assets/`。
 3. 把产物整个拷进 `host-app/plugins/<你的插件id>/`，双击 `beep-host.exe`，

@@ -1,5 +1,5 @@
-// @beep/plugin-kit —— 插件构建预设。
-// 产物约定（Host 运行时加载器按此消费，见 tidy-up/task.md §3）：
+// @beep/sdk 的插件构建预设（原 @beep/plugin-kit，已并入本包，经 "./kit" 子路径导出）。
+// 产物约定（Host 运行时加载器按此消费）：
 //   dist/plugin.js   单文件 ESM，default 导出 definePlugin(...) 的返回值
 //   dist/plugin.json 清单（从插件根目录复制）
 //   dist/assets/**   资源原样复制（Python 桥等）

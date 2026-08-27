@@ -9,7 +9,8 @@
    ```
 
    产物为 `host-app/`（beep-host.exe + plugins/），来自 work-beep 的 GitHub Release，**不进版本库**。
-2. 你的插件用 `@beep/plugin-kit` 构建（`vite build`），产物为
+2. 你的插件用 sdk 自带的命令构建（`beep-plugin build`，构建预设也可经 `@beep/sdk/kit`
+   import 自定义），产物为
    `dist/plugin.js + plugin.json + assets/`。
 3. 把产物整个拷进 `host-app/plugins/<你的插件id>/`，双击 `beep-host.exe`，
    右栏下拉选中你的插件即可调试——不用构建主项目。
@@ -34,4 +35,4 @@ dist/
 - 工具名必须带 `插件id.` 前缀（如 `blender.view_front`），Host 注册时强制校验；
   描述写短——tool schema 是模型 token 大头。
 
-参考实现：`../../plugin-blender/`。
+参考实现：`../../work-beep-plugin-blender/`。

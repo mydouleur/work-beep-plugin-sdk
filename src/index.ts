@@ -1,7 +1,7 @@
 // @beep/sdk —— 插件与 Host 之间的唯一契约。
 // 故意做薄：这里只有类型 + definePlugin 恒等函数 + ctx 注入键，
 // 全部能力（launch/embed/call……）由 Host 实现并通过 PluginContext 传导进插件。
-// 插件构建时把 @beep/sdk 与 vue 标为 external（见 @beep/plugin-kit），
+// 插件构建时把 @beep/sdk 与 vue 标为 external（见本包 ./kit 构建预设），
 // 运行时由 Host 的 import map 解析到 Host 自带的那一份。
 import type { Component, InjectionKey } from "vue";
 

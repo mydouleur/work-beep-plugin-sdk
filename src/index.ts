@@ -36,6 +36,18 @@ export interface PluginContext {
     call(port: number, cmd: string, params: unknown): Promise<unknown>;
     /** 取插件 assets 内文件的绝对路径（桥脚本、辅助程序等） */
     resolveAsset(rel: string): string;
+    /** 本地路径是否为已存在的文件（探测绿色版 exe 等） */
+    exists(path: string): Promise<boolean>;
+    /** HTTP 下载到 dest（仅允许插件目录内）。onProgress 的 total 可能为 0 */
+    download(
+        url: string,
+        dest: string,
+        onProgress?: (done: number, total: number) => void,
+    ): Promise<void>;
+    /** 解压 zip 到 destDir（仅允许插件目录内） */
+    extractZip(zipPath: string, destDir: string): Promise<void>;
+    /** 删除文件或目录（仅允许插件目录内，用于重装绿色版） */
+    removePath(path: string): Promise<void>;
     /** 元素的物理像素矩形（embed/syncRect 的坐标来源） */
     rectOf(el: HTMLElement): Rect | null;
     /** 监听元素尺寸变化与应用窗口移动，回调最新矩形；返回取消函数 */

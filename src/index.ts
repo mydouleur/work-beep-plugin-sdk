@@ -48,6 +48,32 @@ export interface PluginContext {
     extractZip(zipPath: string, destDir: string): Promise<void>;
     /** 删除文件或目录（仅允许插件目录内，用于重装绿色版） */
     removePath(path: string): Promise<void>;
+    /** 系统文件对话框；取消返回 null */
+    pickFile(opts?: {
+        title?: string;
+        filters?: { name: string; extensions: string[] }[];
+    }): Promise<string | null>;
+    /** 短生命周期子进程，捕获 stdout/stderr（如 blender --version）；非 launch */
+    runCapture(
+        executable: string,
+        args: string[],
+        opts?: { timeoutMs?: number },
+    ): Promise<{ code: number; stdout: string; stderr: string }>;
+    /** 读文本文件（仅允许插件目录内） */
+    readText(path: string): Promise<string>;
+    /** 写文本文件（仅允许插件目录内） */
+    writeText(path: string, contents: string): Promise<void>;
+    /**
+     * 运行插件目录内白名单 sidecar（目前仅 fetch_blender.exe），逐行回传 stdout/stderr。
+     * 返回进程 exit code。
+     */
+    runProcess(opts: {
+        executable: string;
+        args: string[];
+        cwd?: string;
+        onStdoutLine?: (line: string) => void;
+        onStderrLine?: (line: string) => void;
+    }): Promise<{ code: number }>;
     /** 元素的物理像素矩形（embed/syncRect 的坐标来源） */
     rectOf(el: HTMLElement): Rect | null;
     /** 监听元素尺寸变化与应用窗口移动，回调最新矩形；返回取消函数 */
